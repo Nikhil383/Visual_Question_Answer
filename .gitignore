@@ -1,17 +1,55 @@
-# Python-generated files
+# Python cache
 __pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+*.pyc
+*.pyo
+*.pyd
+
+# Model weights (avoid pushing heavy files)
 *.pt
 *.pth
-*.ckpt
-.idea/
-.vscode/
-assets/sample_inputs/
-assets/demo_outputs/
+*.bin
 
 # Virtual environments
-.venv
+venv/
+.env/
+.env.* 
+.venv/
+
+# uv files
+.uv/
+uv.lock.backup
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# Pyproject / build artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Gradio cache
+gradio_cached_examples/
+gradio_client/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Assets (optional — keep only sample images)
+assets/demo_outputs/*
+assets/sample_inputs/*
+
+# If you don’t want to ignore assets, comment these lines
+# assets/*

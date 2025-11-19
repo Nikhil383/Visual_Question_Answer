@@ -45,7 +45,7 @@ iface = gr.Interface(
         gr.Textbox(label="Ask a question about the image...") # A text input box
     ],
     outputs=gr.Textbox(label="Answer"), # A text output box
-    title="🤖 Multimodal AI: Visual Question Answering",
+    title="Multimodal AI: Visual Question Answering",
     description="Upload an image and ask any question about it. (Model: dandelin/vilt-b32-finetuned-vqa)"
 )
 
