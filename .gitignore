@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+*.pt
+*.pth
+*.ckpt
+.idea/
+.vscode/
+assets/sample_inputs/
+assets/demo_outputs/
+
+# Virtual environments
+.venv
