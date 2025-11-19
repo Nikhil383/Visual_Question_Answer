@@ -1,4 +1,4 @@
-Multimodal_AI(Visual Question ANswering)
+# Multimodal_AI(Visual Question ANswering)
 
 A lightweight, fast, and interactive Multimodal AI system that answers questions about images using the ViLT-B/32 Visual Question Answering model.
 
@@ -73,3 +73,4 @@ This is widely used in assistive tech, search engines, ecommerce, surveillance, 
 - Build an API endpoint (FastAPI / Flask)
 - Deploy on HuggingFace Spaces
 - Add more ViLT variants
+
