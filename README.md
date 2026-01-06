@@ -18,7 +18,6 @@ This project demonstrates a **minimal, end‑to‑end visual question answering 
 - uses a pretrained multimodal transformer (ViLT),
 - returns the most likely answer, all through an easy‑to‑use web interface.
 
-The project is ready to be used as a **GitHub README**, so you can push this repo to GitHub and this file will appear as the main project description.
 
 ---
 
@@ -46,7 +45,7 @@ The project is ready to be used as a **GitHub README**, so you can push this rep
 1. **Clone the repository from GitHub**
 
    ```bash
-   git clone https://github.com/<your-username>/multimodal-ai.git
+   git clone https://github.com/nikhil383/multimodal-ai.git
    cd multimodal-ai
    ```
 
@@ -103,25 +102,19 @@ Open the URL in your browser, upload an image, type a question, and you’ll see
 
 ---
 
-### Using This on GitHub
+### Github
 
-After you push this project to GitHub:
-
-- GitHub will automatically render this `README.md` on the repository’s main page.
-- You can add screenshots, badges, or links below this section as you enhance the project.
-
-Example commands to publish:
+To publish:
 
 ```bash
 git init
 git add .
 git commit -m "Initial commit: multimodal AI VQA demo"
 git branch -M main
-git remote add origin https://github.com/<your-username>/multimodal-ai.git
+git remote add origin https://github.com/nikhil383/multimodal-ai.git
 git push -u origin main
 ```
 
-Replace `<your-username>` with your actual GitHub username before running the commands.
 
 ---
 
