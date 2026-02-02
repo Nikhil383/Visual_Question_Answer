@@ -1,125 +1,83 @@
-## Multimodal AI – Visual Question Answering Demo
+# Multimodal AI – Visual Question Answering Demo
+
+[![CI](https://github.com/nikhil383/multimodal-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/nikhil383/multimodal-ai/actions/workflows/ci.yml)
+![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
+
+A professional, end-to-end implementation of a Visual Question Answering (VQA) system using the ViLT transformer model. This project demonstrates modern AI engineering practices including modular design, automated testing, and containerization.
 
 ---
 
-### Problem Statement
+## 🏗 Architecture
 
-Modern applications increasingly need to **understand both images and text together**, not just one modality at a time.  
-For example, users may want to:
+```mermaid
+graph TD
+    User([User]) <-->|Browser| UI[Gradio UI]
+    UI -->|Image + Text| App[Application Layer]
+    App -->|Input| Engine[VQA Engine]
+    Engine -->|Preprocessing| Processor[ViLT Processor]
+    Engine -->|Inference| Model[ViLT Transformer]
+    Model -->|Logits| Engine
+    Engine -->|Answer| App
+    App -->|Response| UI
+```
 
-- ask questions about product photos,
-- get quick insights from charts or infographics,
-- interact with screenshots or real‑world scenes using natural language.
+## 🚀 Features
 
-Building such systems from scratch is complex and requires expertise in computer vision, natural language processing, and model deployment.  
-This project demonstrates a **minimal, end‑to‑end visual question answering (VQA) app** that:
+- **Production-Ready Structure**: Clean separation of concerns (`src/app.py`, `src/model.py`).
+- **Robust Testing**: Unit tests included for core model logic (`tests/`).
+- **DevOps Integrated**: `Makefile` for one-command workflows and Docker support.
+- **CI/CD**: Automatic testing and linting via GitHub Actions.
 
-- accepts an image and a free‑form text question,
-- uses a pretrained multimodal transformer (ViLT),
-- returns the most likely answer, all through an easy‑to‑use web interface.
+## 🛠 Installation
 
-
----
-
-### Features
-
-- **Image + Text input**: Upload an image and ask any question about it.
-- **Pretrained ViLT model**: Uses `ViltForQuestionAnswering` with `ViltProcessor`.
-- **Gradio UI**: Clean web interface for quick experimentation.
-- **Python 3.11+**: Managed via `pyproject.toml` (compatible with tools like `uv` or `pip`).
-
----
-
-### Project Structure
-
-- `main.py` – Gradio app that:
-  - loads the ViLT processor and model,
-  - defines `answer_question(image, text)`,
-  - exposes a web interface with image and text inputs.
-- `pyproject.toml` – Project metadata and Python dependencies.
-
----
-
-### Installation
-
-1. **Clone the repository from GitHub**
-
+1. **Clone the repository**
    ```bash
    git clone https://github.com/nikhil383/multimodal-ai.git
    cd multimodal-ai
    ```
 
-2. **Create and activate a virtual environment** (recommended)
-
+2. **Install dependencies** (using `uv` is recommended)
    ```bash
-   python -m venv .venv
-   .venv\Scripts\activate  # On Windows
-   # source .venv/bin/activate  # On macOS/Linux
+   make install
+   # Or manually: uv sync
    ```
 
-3. **Install dependencies**
+## 🏃 Running the App
 
-   Using `pip` (if you export requirements):
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   Or, if you are using `uv` with `pyproject.toml`:
-
-   ```bash
-   uv sync
-   ```
-
-   > Make sure you have a recent version of PyTorch installed that matches your system and GPU/CPU setup.  
-   > See the official installation instructions at the PyTorch website.
-
----
-
-### Running the App
-
-Once dependencies are installed and your virtual environment is active:
-
+Start the server locally:
 ```bash
-python main.py
+make run
+```
+Open [http://localhost:7860](http://localhost:7860) in your browser.
+
+## 🧪 Testing & Quality
+
+Run the test suite:
+```bash
+make test
 ```
 
-The Gradio interface will start, and the terminal will show a **local URL** (and an optional public `share` URL if enabled).  
-Open the URL in your browser, upload an image, type a question, and you’ll see the model’s answer.
-
----
-
-### Model Details
-
-- **Model**: `dandelin/vilt-b32-finetuned-vqa`
-- **Library**: `transformers` (Hugging Face)
-- **Task**: Visual Question Answering (VQA)
-
-`main.py`:
-- uses `ViltProcessor` to prepare the image + text inputs,
-- runs `ViltForQuestionAnswering`,
-- selects the highest‑probability answer from `model.config.id2label`.
-
----
-
-### Github
-
-To publish:
-
+Check code formatting:
 ```bash
-git init
-git add .
-git commit -m "Initial commit: multimodal AI VQA demo"
-git branch -M main
-git remote add origin https://github.com/nikhil383/multimodal-ai.git
-git push -u origin main
+make format
 ```
 
+## 🐳 Docker Support
+
+Build and run the containerized application:
+```bash
+make docker-build
+docker run -p 7860:7860 multimodal-ai
+```
+
+## 📂 Project Structure
+
+- `src/`: Application source code.
+  - `model.py`: Encapsulates the ML model logic.
+  - `app.py`: Handles the web interface.
+- `tests/`: Automated tests.
+- `.github/`: CI/CD configurations.
+- `Makefile`: Command aliases for development.
 
 ---
-
-### License
-
-Add your preferred license here (e.g. MIT, Apache 2.0).  
-If you plan to share this publicly on GitHub, it is recommended to include a `LICENSE` file.
-
+**License**: MIT

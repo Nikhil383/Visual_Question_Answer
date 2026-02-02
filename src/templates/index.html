@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal AI - Visual Question Answering</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Visual Question Answering</h1>
+            <p>Upload an image and ask a question to get AI-powered insights.</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="image-preview" id="imagePreview">
+                    <div class="placeholder-text">
+                        <span>+</span>
+                        <p>Click or Drag to Upload Image</p>
+                    </div>
+                    <img id="previewImg" src="" alt="Image Preview" style="display: none;">
+                </div>
+                <input type="file" id="imageInput" accept="image/*" hidden>
+            </div>
+
+            <div class="input-section">
+                <input type="text" id="questionInput" placeholder="Ask a question about the image (e.g., 'What color is the car?')">
+                <button id="submitBtn">Ask AI</button>
+            </div>
+
+            <div class="result-section" id="resultSection">
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing...</p>
+                </div>
+                <div class="answer-box" id="answerBox" style="display: none;">
+                    <h3>Answer:</h3>
+                    <p id="answerText"></p>
+                </div>
+                <div class="error-box" id="errorBox" style="display: none;">
+                    <p id="errorText"></p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by ViLT Transformer Model</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

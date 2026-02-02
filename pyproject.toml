@@ -1,11 +1,11 @@
 [project]
 name = "multimodal-ai"
 version = "0.1.0"
-description = "Add your description here"
+description = "Visual Question Answering with ViLT"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "gradio>=5.49.1",
+    "flask>=3.0.0",
     "peft>=0.18.0",
     "pillow>=11.3.0",
     "timm>=1.0.22",
@@ -13,3 +13,13 @@ dependencies = [
     "torchvision>=0.24.0",
     "transformers>=4.57.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.1.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+testpaths = ["tests"]
