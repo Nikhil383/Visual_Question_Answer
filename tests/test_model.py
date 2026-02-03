@@ -2,45 +2,54 @@ from unittest.mock import MagicMock, patch
 from PIL import Image
 from src.model import VQAEngine
 
-# We mock the transformers components to avoid downloading the model during tests
-@patch('src.model.ViltProcessor')
-@patch('src.model.ViltForQuestionAnswering')
-def test_predict_success(mock_model_cls, mock_processor_cls):
-    # Setup mocks
-    mock_processor = MagicMock()
-    mock_model = MagicMock()
-    mock_processor_cls.from_pretrained.return_value = mock_processor
-    mock_model_cls.from_pretrained.return_value = mock_model
+@patch('src.model.ChatGoogleGenerativeAI')
+def test_predict_success(mock_llm_cls):
+    # Setup mock
+    mock_llm = MagicMock()
+    mock_llm_cls.return_value = mock_llm
     
-    # Mock return values
-    mock_processor.return_value = {"input_ids": "fake_tensor"}
-    mock_outputs = MagicMock()
-    # Mock logits such that argmax gives index 0
-    import torch
-    mock_outputs.logits = torch.tensor([[10.0, 5.0]]) 
-    mock_model.return_value = mock_outputs
-    mock_model.config.id2label = {0: "yes", 1: "no"}
+    # Mock return value
+    mock_response = MagicMock()
+    mock_response.content = "A cat."
+    mock_llm.invoke.return_value = mock_response
 
     # Initialize engine
-    engine = VQAEngine()
+    # We ignore API key warning in tests since we mock LLM
+    with patch.dict('os.environ', {'GOOGLE_API_KEY': 'fake_key'}):
+        engine = VQAEngine()
     
     # Create fake image
     img = Image.new('RGB', (100, 100))
     
     # Run predict
-    result = engine.predict(img, "Is this a test?")
+    result = engine.predict(img, "What is this?")
     
     # Verify
-    assert result == "yes"
-    mock_processor.assert_called_once()
-    mock_model.assert_called_once()
-
-def test_predict_error():
-    # Test error handling
-    engine = VQAEngine()
-    # Force an error by passing None for image which processor might reject, 
-    # or better, mock it to raise exception
-    engine.processor = MagicMock(side_effect=Exception("Processing failed"))
+    assert result == "A cat."
+    mock_llm.invoke.assert_called_once()
     
-    result = engine.predict(None, "Question")
-    assert result == "Error processing request."
+    # Check if image was passed in payload (we can check args)
+    call_args = mock_llm.invoke.call_args
+    assert call_args is not None
+    messages = call_args[0][0]
+    assert len(messages) == 1
+    assert isinstance(messages[0].content, list)
+    assert messages[0].content[0]['type'] == 'text'
+    assert messages[0].content[1]['type'] == 'image_url'
+
+@patch('src.model.ChatGoogleGenerativeAI')
+def test_predict_error(mock_llm_cls):
+    # Test error handling
+    mock_llm = MagicMock()
+    mock_llm_cls.return_value = mock_llm
+    
+    # Force an error
+    mock_llm.invoke.side_effect = Exception("API Error")
+    
+    with patch.dict('os.environ', {'GOOGLE_API_KEY': 'fake_key'}):
+        engine = VQAEngine()
+        
+    img = Image.new('RGB', (100, 100))
+    result = engine.predict(img, "Question")
+    
+    assert "Error processing request" in result

@@ -3,7 +3,7 @@
 [![CI](https://github.com/nikhil383/multimodal-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/nikhil383/multimodal-ai/actions/workflows/ci.yml)
 ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
 
-A professional, end-to-end implementation of a Visual Question Answering (VQA) system using the ViLT transformer model. This project demonstrates modern AI engineering practices including modular design, automated testing, and containerization.
+A professional, end-to-end implementation of a Visual Question Answering (VQA) system using **Google Gemini API** and **LangChain**. This project demonstrates modern AI engineering practices including modular design, automated testing, and containerization.
 
 ---
 
@@ -11,13 +11,12 @@ A professional, end-to-end implementation of a Visual Question Answering (VQA) s
 
 ```mermaid
 graph TD
-    User([User]) <-->|Browser| UI[Gradio UI]
+    User([User]) <-->|Browser| UI[Web Interface]
     UI -->|Image + Text| App[Application Layer]
-    App -->|Input| Engine[VQA Engine]
-    Engine -->|Preprocessing| Processor[ViLT Processor]
-    Engine -->|Inference| Model[ViLT Transformer]
-    Model -->|Logits| Engine
-    Engine -->|Answer| App
+    App -->|Prompt + Image| LangChain[LangChain Integration]
+    LangChain -->|API Call| Gemini[Google Gemini API]
+    Gemini -->|Response| LangChain
+    LangChain -->|Answer| App
     App -->|Response| UI
 ```
 
@@ -40,6 +39,13 @@ graph TD
    ```bash
    make install
    # Or manually: uv sync
+   ```
+
+3. **Configuration**
+   Create a `.env` file in the project root and add your Google API key:
+   ```bash
+   cp .env.example .env
+   # Edit .env and set GOOGLE_API_KEY
    ```
 
 ## 🏃 Running the App
