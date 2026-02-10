@@ -18,11 +18,15 @@ def test_predict_success(mock_llm_cls):
     with patch.dict('os.environ', {'GOOGLE_API_KEY': 'fake_key'}):
         engine = VQAEngine()
     
-    # Create fake image
-    img = Image.new('RGB', (100, 100))
+    # Create fake image and convert to base64
+    img = Image.new('RGB', (10, 10))
+    import io, base64
+    buffered = io.BytesIO()
+    img.save(buffered, format="JPEG")
+    img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
     
     # Run predict
-    result = engine.predict(img, "What is this?")
+    result = engine.predict(img_str, "What is this?")
     
     # Verify
     assert result == "A cat."
@@ -49,7 +53,6 @@ def test_predict_error(mock_llm_cls):
     with patch.dict('os.environ', {'GOOGLE_API_KEY': 'fake_key'}):
         engine = VQAEngine()
         
-    img = Image.new('RGB', (100, 100))
-    result = engine.predict(img, "Question")
+    result = engine.predict("fake_base64", "Question")
     
     assert "Error processing request" in result

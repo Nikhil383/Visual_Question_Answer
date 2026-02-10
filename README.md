@@ -32,16 +32,56 @@ This repository demonstrates how to build and deploy modern AI applications usin
 The system is designed with a clear separation between the web interface, the application logic, and the intelligence engine.
 
 ```mermaid
-graph TD
-    User([User]) <-->|REST API / HTML| UI[Flask Web Interface]
-    UI -->|Image + Prompt| App[App Controller]
-    App -->|Base64 Encoding| Engine[VQA Engine]
-    Engine -->|Chain Execution| LangChain[LangChain Framework]
-    LangChain -->|Multimodal Payload| Gemini[Google Gemini API]
-    Gemini -->|Natural Language Answer| LangChain
-    LangChain -->|Formatted Response| Engine
-    Engine -->|Result| App
-    App -->|JSON / View| UI
+graph LR
+    subgraph Client_Layer [Client Layer]
+        User([User Interface])
+    end
+
+    subgraph Transport_Layer [Transport Layer - Flask]
+        UI[Web Frontend]
+        App[App Controller]
+    end
+
+    subgraph Intelligence_Layer [Intelligence Engine]
+        Engine[VQA Engine]
+        LangChain[LangChain Orchestrator]
+        Gemini[Google Gemini API]
+    end
+
+    User <-->|REST API / HTML| UI
+    UI -->|Image + Prompt| App
+    App -->|Base64 Encoding| Engine
+    Engine -->|HumanMessage| LangChain
+    LangChain -->|Multimodal Payload| Gemini
+    Gemini -->|Natural Language| LangChain
+    LangChain -->|Formatted Answer| Engine
+    Engine -->|JSON Result| App
+    App -->|Rendered View| UI
+```
+
+### Execution Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant Frontend as Flask UI
+    participant Backend as App Controller
+    participant Engine as VQA Engine
+    participant LC as LangChain
+    participant Gemini as Google Gemini
+
+    U->>Frontend: Select Image & Ask Question
+    Frontend->>Backend: POST /predict (Image File, Text)
+    Note over Backend: PIL conversion & Base64 Encoding
+    Backend->>Engine: engine.predict(img_b64, text)
+    Note over Engine: LangChain Message Construction
+    Engine->>LC: Invoke LLM Chain
+    LC->>Gemini: Request (JSON + Base64)
+    Gemini-->>LC: Natural Language Response
+    LC-->>Engine: Formatted Answer
+    Engine-->>Backend: Return Result
+    Backend-->>Frontend: JSON Response
+    Frontend-->>U: Display AI Insights
 ```
 
 ## Engineering Excellence
