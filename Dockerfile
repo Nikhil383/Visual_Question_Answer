@@ -3,9 +3,9 @@ FROM python:3.11-slim
 
 # ---------- Metadata ----------
 LABEL maintainer="nikhilmahesh89@gmail.com"
+
 ENV PYTHONUNBUFFERED=1 \
-    POETRY_VIRTUALENVS_CREATE=false \
-    FLASK_PORT=5000
+    UV_SYSTEM_PYTHON=1
 
 # ---------- System deps ----------
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -20,18 +20,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # ---------- Create app dir ----------
 WORKDIR /app
 
-# ---------- Copy dependency manifests first (for layer caching) ----------
-COPY pyproject.toml uv.lock /app/
+# ---------- Copy dependency manifests ----------
+COPY pyproject.toml uv.lock ./
 
-# ---------- Install uv and sync dependencies ----------
-RUN pip install --no-cache-dir uv \
-    && uv sync --non-interactive || true
+# ---------- Install uv ----------
+RUN pip install --no-cache-dir uv
+
+# ---------- Install dependencies ----------
+RUN uv sync --frozen --no-dev
 
 # ---------- Copy project files ----------
-COPY . /app
+COPY . .
 
-# ---------- Expose port ----------
-EXPOSE ${FLASK_PORT}
+# ---------- Render requires this ----------
+ENV PORT=10000
+EXPOSE 10000
 
-# ---------- Default command ----------
-CMD ["python", "-m", "src.app"]
+# ---------- Start app ----------
+CMD ["sh", "-c", "python -m src.app --port=$PORT"]
