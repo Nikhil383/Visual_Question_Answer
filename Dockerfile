@@ -2,10 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-ENV PYTHONUNBUFFERED=1 \
-    UV_SYSTEM_PYTHON=1
+ENV PYTHONUNBUFFERED=1
 
-# System deps
+# System dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
@@ -15,20 +14,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv first
+# Install uv
 RUN pip install --no-cache-dir uv
 
 # Copy dependency files first
 COPY pyproject.toml uv.lock ./
 
-# Install dependencies (VERY IMPORTANT)
-RUN uv sync --frozen
+# 🚨 Install into system Python (CRITICAL)
+RUN uv sync --frozen --system
 
-# Copy rest of project
+# Copy rest of app
 COPY . .
 
-# Render port
+# Render dynamic port
 ENV PORT=10000
 EXPOSE 10000
 
-CMD ["sh", "-c", "python -m src.app"]
+CMD ["sh", "-c", "uv run py -m src.app"]
