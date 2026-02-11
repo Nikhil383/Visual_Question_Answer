@@ -1,13 +1,11 @@
-# ---------- Base image ----------
 FROM python:3.11-slim
 
-# ---------- Metadata ----------
-LABEL maintainer="nikhilmahesh89@gmail.com"
+WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1 \
     UV_SYSTEM_PYTHON=1
 
-# ---------- System deps ----------
+# System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
@@ -17,24 +15,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# ---------- Create app dir ----------
-WORKDIR /app
-
-# ---------- Copy dependency manifests ----------
-COPY pyproject.toml uv.lock ./
-
-# ---------- Install uv ----------
+# Install uv first
 RUN pip install --no-cache-dir uv
 
-# ---------- Install dependencies ----------
-RUN uv sync --frozen --no-dev
+# Copy dependency files first
+COPY pyproject.toml uv.lock ./
 
-# ---------- Copy project files ----------
+# Install dependencies (VERY IMPORTANT)
+RUN uv sync --frozen
+
+# Copy rest of project
 COPY . .
 
-# ---------- Render requires this ----------
+# Render port
 ENV PORT=10000
 EXPOSE 10000
 
-# ---------- Start app ----------
-CMD ["sh", "-c", "python -m src.app --port=$PORT"]
+CMD ["sh", "-c", "python -m src.app"]
