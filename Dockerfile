@@ -17,17 +17,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install uv
 RUN pip install --no-cache-dir uv
 
-# Copy dependency files first
+# Copy dependency files
 COPY pyproject.toml uv.lock ./
 
-# 🚨 Install into system Python (CRITICAL)
-RUN uv sync --frozen --system
+# Install dependencies (creates .venv)
+RUN uv sync --frozen
 
-# Copy rest of app
+# Copy rest of project
 COPY . .
 
 # Render dynamic port
 ENV PORT=10000
 EXPOSE 10000
 
-CMD ["sh", "-c", "uv run py -m src.app"]
+# 🚨 IMPORTANT: Use uv run
+CMD ["sh", "-c", "uv run python -m src.app"]
