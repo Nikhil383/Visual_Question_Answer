@@ -1,11 +1,11 @@
 :root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
+    --primary-color: #1d742b;
+    --primary-hover: #040f05;
+    --bg-color: #c47f30;
+    --card-bg: #1c3629;
     --text-color: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #334155;
+    --text-muted: #133944;
+    --border-color: #08101a;
     --radius: 12px;
     --transition: all 0.3s ease;
 }
@@ -41,7 +41,7 @@ header {
 }
 
 .system-badge {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(2, 3, 22, 0.1);
     color: var(--primary-color);
     padding: 4px 12px;
     border-radius: 20px;
@@ -49,7 +49,7 @@ header {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(16, 16, 22, 0.2);
     margin-bottom: 16px;
     display: inline-block;
 }
@@ -58,7 +58,7 @@ header h1 {
     font-weight: 700;
     font-size: 3rem;
     margin-bottom: 10px;
-    background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #6366f1 100%);
+    background: linear-gradient(135deg, #02030a 0%, #09040e 50%, #070714 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
