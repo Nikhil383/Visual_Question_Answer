@@ -1,11 +1,11 @@
 :root {
-    --primary-color: #1d742b;
+    --primary-color: #260b63;
     --primary-hover: #040f05;
-    --bg-color: #c47f30;
+    --bg-color: #4c2b8f;
     --card-bg: #1c3629;
     --text-color: #f8fafc;
-    --text-muted: #133944;
-    --border-color: #08101a;
+    --text-muted: #ecf0f1;
+    --border-color: #abb6c4;
     --radius: 12px;
     --transition: all 0.3s ease;
 }
@@ -41,7 +41,7 @@ header {
 }
 
 .system-badge {
-    background: rgba(2, 3, 22, 0.1);
+    background: rgba(226, 226, 233, 0.87);
     color: var(--primary-color);
     padding: 4px 12px;
     border-radius: 20px;
@@ -49,7 +49,7 @@ header {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 1px solid rgba(16, 16, 22, 0.2);
+    border: 1px solid rgba(221, 221, 231, 0.925);
     margin-bottom: 16px;
     display: inline-block;
 }
@@ -58,7 +58,7 @@ header h1 {
     font-weight: 700;
     font-size: 3rem;
     margin-bottom: 10px;
-    background: linear-gradient(135deg, #02030a 0%, #09040e 50%, #070714 100%);
+    background: linear-gradient(135deg, #d6d7df 0%, #d6d7df 50%, #d6d7df 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -91,7 +91,7 @@ header p {
 
 .image-preview:hover {
     border-color: var(--primary-color);
-    background-color: #1e293b80;
+    background-color: #e6e8eb80;
 }
 
 .image-preview.has-image {
@@ -165,7 +165,7 @@ button:active {
 }
 
 .answer-box {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(30, 41, 59, 1) 100%);
+    background: linear-gradient(135deg, rgba(237, 240, 243, 0.7) 0%, rgba(237, 240, 243, 1) 100%);
     border: 1px solid var(--border-color);
     padding: 24px;
     border-radius: var(--radius);
