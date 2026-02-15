@@ -156,13 +156,14 @@ multimodal-ai/
 ├── Makefile            # Workflow automation commands
 └── Dockerfile          # Container definition
 ```
-Demo
+## Demo
 
 <img width="1916" height="989" alt="image" src="https://github.com/user-attachments/assets/d4daa452-ec72-47c4-9b6d-cbed044ce196" />
 
 <img width="1919" height="975" alt="image" src="https://github.com/user-attachments/assets/b1b4a3af-cc11-45eb-87db-6e9e3c32454d" />
 
-Link for the demo: [Link](https://multimodal-ai-50ad.onrender.com)
+- Link for the demo: [Link](https://multimodal-ai-50ad.onrender.com)
+
 ---
 
 ## Roadmap
