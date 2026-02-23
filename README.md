@@ -167,7 +167,6 @@ multimodal-ai/
 ---
 
 ## Roadmap
-- [ ] Implement support for local multimodal models (Ollama integration).
 - [ ] Add conversation history support (ChatBufferMemory).
 - [ ] Enhance UI with real-time streaming responses.
 - [ ] Add evaluation metrics for VQA accuracy.
