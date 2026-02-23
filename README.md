@@ -158,9 +158,10 @@ multimodal-ai/
 ```
 ## Demo
 
-<img width="1916" height="989" alt="image" src="https://github.com/user-attachments/assets/d4daa452-ec72-47c4-9b6d-cbed044ce196" />
+<img width="1919" height="935" alt="image" src="https://github.com/user-attachments/assets/b2ddab55-cd0f-497a-a162-1e44befa5238" />
 
-<img width="1919" height="975" alt="image" src="https://github.com/user-attachments/assets/b1b4a3af-cc11-45eb-87db-6e9e3c32454d" />
+<img width="1919" height="935" alt="image" src="https://github.com/user-attachments/assets/2db8287d-cbd3-4dac-881b-99cdc55c37ce" />
+
 
 - Link for the demo: [Link](https://multimodal-ai-50ad.onrender.com)
 
