@@ -4,7 +4,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A high-performance, production-ready implementation of a **Multimodal VQA (Visual Question Answering) system**. This project leverages the **Google Gemini Pro Vision** (via Gemini 2.0/1.5 Flash models) orchestrated by **LangChain** to provide an intelligent interface for reasoning over visual data.
+A high-performance, production-ready implementation of a **Multimodal VQA (Visual Question Answering) system**. This project leverages the **Google Gemini Pro Vision** orchestrated by **LangChain** to provide an intelligent interface for reasoning over visual data.
 
 ---
 
