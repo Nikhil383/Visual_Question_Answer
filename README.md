@@ -167,10 +167,11 @@ multimodal-ai/
 
 ---
 
-## Roadmap
-- [ ] Add conversation history support (ChatBufferMemory).
-- [ ] Enhance UI with real-time streaming responses.
-- [ ] Add evaluation metrics for VQA accuracy.
+## Future
+- To add aconversation history support (ChatBufferMemory).
+- To enhance UI with real-time streaming responses.
+- Add real-time video question answering capability
+- Optimize model inference time for faster responses
 
 ---
 **Maintained by**: [Nikhil](https://github.com/nikhil383)
