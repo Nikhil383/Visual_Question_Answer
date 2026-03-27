@@ -120,12 +120,20 @@ This project showcases several advanced software engineering practices:
    cp .env.example .env
    # Open .env and add your GOOGLE_API_KEY
    ```
+   On Windows PowerShell (if `cp` isn’t available), use:
+   ```powershell
+   Copy-Item .env.example .env
+   ```
 
 ### Execution
 
 **Start the Development Server:**
 ```bash
 make run
+```
+If `make` is not installed on your system, run the equivalent command:
+```bash
+uv run python -m src.app
 ```
 Access the interface at `http://localhost:5000` (or the port specified in your console).
 
