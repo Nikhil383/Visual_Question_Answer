@@ -179,7 +179,6 @@ multimodal-ai/
 - To add aconversation history support (ChatBufferMemory).
 - To enhance UI with real-time streaming responses.
 - Add real-time video question answering capability
-- Optimize model inference time for faster responses
 
 ---
 **Maintained by**: [Nikhil](https://github.com/nikhil383)

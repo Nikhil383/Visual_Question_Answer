@@ -48,7 +48,7 @@ def test_predict_success(mock_llm_cls):
 
 @patch("src.model.ChatGoogleGenerativeAI")
 def test_predict_error(mock_llm_cls):
-    # Test error handling
+    # Test error handling - model catches exceptions and returns error message
     mock_llm = MagicMock()
     mock_llm_cls.return_value = mock_llm
 
@@ -58,5 +58,5 @@ def test_predict_error(mock_llm_cls):
     with patch.dict("os.environ", {"GOOGLE_API_KEY": "fake_key"}):
         engine = VQAEngine()
 
-    with pytest.raises(Exception):
-        engine.predict("fake_base64", "Question")
+    result = engine.predict("fake_base64", "Question")
+    assert "Error processing request" in result
