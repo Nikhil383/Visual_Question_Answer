@@ -61,3 +61,5 @@ assets/sample_inputs/*
 # If you don’t want to ignore assets, comment these lines
 # assets/*
 CLAUDE.md
+interview.md
+ppt.md
