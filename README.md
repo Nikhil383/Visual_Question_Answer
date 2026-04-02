@@ -1,184 +1,185 @@
-# Multimodal AI: Visual Question Answering with Gemini & LangChain
+# Multimodal AI: Visual Question Answering System
 
 [![CI](https://github.com/nikhil383/multimodal-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/nikhil383/multimodal-ai/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A high-performance, production-ready implementation of a **Multimodal VQA (Visual Question Answering) system**. This project leverages the **Google Gemini Pro Vision** orchestrated by **LangChain** to provide an intelligent interface for reasoning over visual data.
+**A production-ready Visual Question Answering (VQA) system that enables users to upload images and ask natural language questions about them.** Built with Google Gemini Vision API and LangChain, deployed via Flask with full CI/CD automation.
+
+🔗 **Live Demo**: [https://multimodal-ai-50ad.onrender.com](https://multimodal-ai-50ad.onrender.com)
 
 ---
 
-## Overview
+## 💼 What This Demonstrates
 
-This repository demonstrates how to build and deploy modern AI applications using industry-standard engineering practices. It moves beyond simple notebooks to a robust, modular architecture suitable for production environments.
+This project showcases **full-stack AI engineering skills**:
 
-### Key Capabilities
-- **Visual Reasoning**: Interpret complex images and answer context-aware questions.
-- **API-First Design**: Optimized for low-latency response using state-of-the-art hosted LLMs.
-- **Engineering Rigor**: Includes full test coverage, containerization, and automated CI/CD pipelines.
-
-## Technology Stack
-
-| Category | Tools & Frameworks |
+| Competency | Technologies & Practices |
 | :--- | :--- |
-| **AI / LLM** | Google Gemini API, LangChain (Orchestration) |
-| **Backend** | Flask (Python), Python Dotenv |
-| **Tooling / Env** | UV (High-speed package manager), Makefile |
-| **DevOps** | Docker, GitHub Actions (CI/CD) |
-| **Testing** | Pytest, Unittest Mock |
+| **AI/ML Integration** | LangChain orchestration, Google Gemini Vision API, multimodal prompt engineering |
+| **Backend Development** | Flask REST API, base64 image processing, async request handling |
+| **DevOps & Cloud** | Docker containerization, GitHub Actions CI/CD, Render deployment |
+| **Software Engineering** | Modular architecture, unit testing with mocks, type-safe Python 3.11+ |
+| **Developer Tooling** | UV package manager, Makefile automation, ruff linting, pytest |
 
-## Architecture
+---
 
-The system is designed with a clear separation between the web interface, the application logic, and the intelligence engine.
+## 🚀 Quick Start
 
-```mermaid
-graph LR
-    subgraph Client_Layer [Client Layer]
-        User([User Interface])
-    end
-
-    subgraph Transport_Layer [Transport Layer - Flask]
-        UI[Web Frontend]
-        App[App Controller]
-    end
-
-    subgraph Intelligence_Layer [Intelligence Engine]
-        Engine[VQA Engine]
-        LangChain[LangChain Orchestrator]
-        Gemini[Google Gemini API]
-    end
-
-    User <-->|REST API / HTML| UI
-    UI -->|Image + Prompt| App
-    App -->|Base64 Encoding| Engine
-    Engine -->|HumanMessage| LangChain
-    LangChain -->|Multimodal Payload| Gemini
-    Gemini -->|Natural Language| LangChain
-    LangChain -->|Formatted Answer| Engine
-    Engine -->|JSON Result| App
-    App -->|Rendered View| UI
+```bash
+git clone https://github.com/nikhil383/multimodal-ai.git
+cd multimodal-ai
+make install    # or: uv sync
+make run        # or: uv run python -m src.app
 ```
 
-### Execution Flow
+Visit `http://localhost:5000` to interact with the application.
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant Frontend as Flask UI
-    participant Backend as App Controller
-    participant Engine as VQA Engine
-    participant LC as LangChain
-    participant Gemini as Google Gemini
+---
 
-    U->>Frontend: Select Image & Ask Question
-    Frontend->>Backend: POST /predict (Image File, Text)
-    Note over Backend: PIL conversion & Base64 Encoding
-    Backend->>Engine: engine.predict(img_b64, text)
-    Note over Engine: LangChain Message Construction
-    Engine->>LC: Invoke LLM Chain
-    LC->>Gemini: Request (JSON + Base64)
-    Gemini-->>LC: Natural Language Response
-    LC-->>Engine: Formatted Answer
-    Engine-->>Backend: Return Result
-    Backend-->>Frontend: JSON Response
-    Frontend-->>U: Display AI Insights
+## 🏗️ Architecture
+
+**Three-layer design for maintainability and scalability:**
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────────┐
+│  Transport      │────▶│  Intelligence    │────▶│  External API       │
+│  (Flask App)    │     │  (VQA Engine)    │     │  (Gemini + LangChain)│
+└─────────────────┘     └──────────────────┘     └─────────────────────┘
+   • HTTP handling          • Message construction    • LLM inference
+   • Image validation       • Multimodal prompts      • Response parsing
+   • Base64 encoding        • JSON serialization
 ```
 
-## Engineering
+### Key Design Decisions
 
-This project showcases several advanced software engineering practices:
+- **Separation of concerns**: Web layer isolated from AI logic for easy testing and swapping
+- **Mock-based testing**: CI runs without API costs using `unittest.mock`
+- **Data URI pattern**: Images encoded as `data:image/jpeg;base64,{encoded}` for API compatibility
+- **Environment-based config**: API keys managed via `.env` (python-dotenv)
 
-- **Ultra-Fast Dependency Management**: Uses `uv` for deterministic builds and near-instant package installation.
-- **Containerization**: A multi-stage `Dockerfile` (or optimized single-stage) ensures the app runs everywhere.
-- **Automated Quality Gate**: GitHub Actions automatically run linting and unit tests on every push.
-- **Robust Testing**: Implements mock-based testing for external API calls, ensuring high reliability without incurring API costs during CI.
-- **Clean Code**: Adheres to modular design patterns, isolating the ML logic from the transport layer.
+---
 
-## Getting Started
+## 🎯 Business Value
+
+| Use Case | Impact |
+| :--- | :--- |
+| **Customer Support** | Automate visual troubleshooting (e.g., "What's wrong with this product?") |
+| **Accessibility** | Enable visually impaired users to understand image content |
+| **Content Moderation** | Detect inappropriate or policy-violating images at scale |
+| **E-commerce** | Power visual search and product recommendations |
+| **Healthcare** | Assist medical professionals with image-based diagnostics (research use) |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **AI/ML** | Google Gemini Vision API, LangChain |
+| **Backend** | Flask, Python 3.11+, python-dotenv |
+| **DevOps** | Docker, GitHub Actions, Render |
+| **Testing** | pytest, unittest.mock |
+| **Tooling** | UV (package manager), Makefile, ruff |
+
+---
+
+## 📁 Project Structure
+
+```
+multimodal-ai/
+├── src/
+│   ├── app.py          # Flask REST API – image upload, validation, base64 encoding
+│   ├── model.py        # VQA Engine – LangChain message construction – Gemini invocation
+│   ├── templates/      # HTML frontend with image upload UI
+│   └── static/         # CSS/JS assets
+├── tests/              # Unit tests with mocked LLM (zero API cost in CI)
+├── .github/            # CI/CD pipeline – auto-test on PR
+├── pyproject.toml      # Dependency management (UV)
+├── Makefile            # Developer workflow automation
+├── Dockerfile          # Containerized deployment
+└── .env.example        # Environment variable template
+```
+
+---
+
+## 🧪 Testing & Quality
+
+**All code is tested and linted automatically on every commit:**
+
+```bash
+make test     # Run pytest suite
+make format   # Lint + format with ruff
+make docker-build  # Build container
+```
+
+**CI Pipeline** (`.github/workflows/ci.yml`):
+- Runs on every PR to `main`
+- Installs dependencies via `uv sync`
+- Executes unit tests with mocked API calls
+- Enforces code quality with `ruff check`
+
+---
+
+## 📦 Installation
 
 ### Prerequisites
 - Python 3.11+
-- [UV](https://github.com/astral-sh/uv) (Recommended) or `pip`
-- Google Gemini API Key (Get one at [Google AI Studio](https://aistudio.google.com/))
+- [UV](https://github.com/astral-sh/uv) (recommended) or `pip`
+- Google Gemini API Key ([get one free](https://aistudio.google.com/))
 
-### Installation
+### Setup
 
-1. **Clone and Enter**
-   ```bash
-   git clone https://github.com/nikhil383/multimodal-ai.git
-   cd multimodal-ai
-   ```
-
-2. **Setup Environment**
-   ```bash
-   make install  # or: uv sync
-   ```
-
-3. **Configure API Key**
-   Create a `.env` file from the template:
-   ```bash
-   cp .env.example .env
-   # Open .env and add your GOOGLE_API_KEY
-   ```
-   On Windows PowerShell (if `cp` isn’t available), use:
-   ```powershell
-   Copy-Item .env.example .env
-   ```
-
-### Execution
-
-**Start the Development Server:**
 ```bash
-make run
-```
-If `make` is not installed on your system, run the equivalent command:
-```bash
-uv run python -m src.app
-```
-Access the interface at `http://localhost:5000` (or the port specified in your console).
+git clone https://github.com/nikhil383/multimodal-ai.git
+cd multimodal-ai
 
-## Testing & Quality Assurance
+# Install dependencies
+make install  # or: uv sync
 
-**Run Test Suite:**
-```bash
-make test
+# Configure API key
+cp .env.example .env  # Edit .env and add GOOGLE_API_KEY
+
+# Run development server
+make run      # or: uv run python -m src.app
 ```
 
-**Quality Check (Linting & Formatting):**
-```bash
-make format
-```
-
-## Project Structure
-
-```text
-multimodal-ai/
-├── src/
-│   ├── app.py          # Flask application and entry point
-│   ├── model.py        # VQA Engine (Gemini + LangChain logic)
-│   ├── templates/      # Frontend HTML
-│   └── static/         # Frontend CSS/JS
-├── tests/              # Automated unit tests
-├── .github/            # GitHub Actions CI/CD workflows
-├── pyproject.toml      # Modern Python dependency definition
-├── Makefile            # Workflow automation commands
-└── Dockerfile          # Container definition
-```
-## Demo
-
-<img width="1919" height="935" alt="image" src="https://github.com/user-attachments/assets/b2ddab55-cd0f-497a-a162-1e44befa5238" />
-
-<img width="1919" height="935" alt="image" src="https://github.com/user-attachments/assets/2db8287d-cbd3-4dac-881b-99cdc55c37ce" />
-
-
-- Link for the demo: [Link](https://multimodal-ai-50ad.onrender.com)
+Access at `http://localhost:5000`
 
 ---
 
-## Future
-- To add aconversation history support (ChatBufferMemory).
-- To enhance UI with real-time streaming responses.
-- Add real-time video question answering capability
+## 🎬 Demo
+
+**Upload an image, ask a question, get an AI-powered answer:**
+
+<img width="1919" height="935" alt="Demo Screenshot" src="https://github.com/user-attachments/assets/b2ddab55-cd0f-497a-a162-1e44befa5238" />
+
+<img width="1919" height="935" alt="Demo Screenshot" src="https://github.com/user-attachments/assets/2db8287d-cbd3-4dac-881b-99cdc55c37ce" />
+
+🔗 **Try it live**: [https://multimodal-ai-50ad.onrender.com](https://multimodal-ai-50ad.onrender.com)
 
 ---
-**Maintained by**: [Nikhil](https://github.com/nikhil383)
+
+## 🚀 What's Next
+
+Planned enhancements to demonstrate advanced capabilities:
+
+- [ ] **Conversation history** with LangChain `ChatBufferMemory` for multi-turn VQA
+- [ ] **Real-time streaming** responses for better UX
+- [ ] **Video Q&A** support for temporal reasoning
+
+---
+
+## 👨‍💻 About the Author
+
+**Nikhil**  
+AI/ML Engineer specializing in production-ready LLM applications.
+
+- 📧 **GitHub**: [@nikhil383](https://github.com/nikhil383)
+- 🔗 **Connect**: Available for AI engineering roles
+
+**Open to opportunities** in AI/ML engineering, LLM application development, and full-stack AI systems.
+
+---
+
+*Built with modern AI engineering practices. Questions? Reach out via GitHub.*
