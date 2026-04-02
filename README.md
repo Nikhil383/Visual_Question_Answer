@@ -6,11 +6,11 @@
 
 **A production-ready Visual Question Answering (VQA) system that enables users to upload images and ask natural language questions about them.** Built with Google Gemini Vision API and LangChain, deployed via Flask with full CI/CD automation.
 
-🔗 **Live Demo**: [https://multimodal-ai-50ad.onrender.com](https://multimodal-ai-50ad.onrender.com)
+**Live Demo**: [https://multimodal-ai-50ad.onrender.com](https://multimodal-ai-50ad.onrender.com)
 
 ---
 
-## 💼 What This Demonstrates
+## What This Demonstrates
 
 This project showcases **full-stack AI engineering skills**:
 
@@ -24,7 +24,7 @@ This project showcases **full-stack AI engineering skills**:
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 git clone https://github.com/nikhil383/multimodal-ai.git
@@ -37,7 +37,7 @@ Visit `http://localhost:5000` to interact with the application.
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 **Three-layer design for maintainability and scalability:**
 
@@ -60,7 +60,7 @@ Visit `http://localhost:5000` to interact with the application.
 
 ---
 
-## 🎯 Business Value
+##  Business Value
 
 | Use Case | Impact |
 | :--- | :--- |
@@ -72,7 +72,7 @@ Visit `http://localhost:5000` to interact with the application.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technologies |
 | :--- | :--- |
@@ -84,7 +84,7 @@ Visit `http://localhost:5000` to interact with the application.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 multimodal-ai/
@@ -103,7 +103,7 @@ multimodal-ai/
 
 ---
 
-## 🧪 Testing & Quality
+##  Testing & Quality
 
 **All code is tested and linted automatically on every commit:**
 
@@ -121,7 +121,7 @@ make docker-build  # Build container
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 - Python 3.11+
@@ -156,27 +156,27 @@ Access at `http://localhost:5000`
 
 <img width="1919" height="935" alt="Demo Screenshot" src="https://github.com/user-attachments/assets/2db8287d-cbd3-4dac-881b-99cdc55c37ce" />
 
-🔗 **Try it live**: [https://multimodal-ai-50ad.onrender.com](https://multimodal-ai-50ad.onrender.com)
+**Try it live**: [https://multimodal-ai-50ad.onrender.com](https://multimodal-ai-50ad.onrender.com)
 
 ---
 
-## 🚀 What's Next
+##  What's Next
 
 Planned enhancements to demonstrate advanced capabilities:
 
-- [ ] **Conversation history** with LangChain `ChatBufferMemory` for multi-turn VQA
-- [ ] **Real-time streaming** responses for better UX
-- [ ] **Video Q&A** support for temporal reasoning
+- **Conversation history** with LangChain `ChatBufferMemory` for multi-turn VQA
+- **Real-time streaming** responses for better UX
+- **Video Q&A** support for temporal reasoning
 
 ---
 
-## 👨‍💻 About the Author
+## About the Author
 
 **Nikhil**  
 AI/ML Engineer specializing in production-ready LLM applications.
 
-- 📧 **GitHub**: [@nikhil383](https://github.com/nikhil383)
-- 🔗 **Connect**: Available for AI engineering roles
+-  **GitHub**: [@nikhil383](https://github.com/nikhil383)
+-  **Connect**: Available for AI engineering roles
 
 **Open to opportunities** in AI/ML engineering, LLM application development, and full-stack AI systems.
 
