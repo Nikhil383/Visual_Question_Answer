@@ -148,7 +148,7 @@ Access at `http://localhost:5000`
 
 ---
 
-## 🎬 Demo
+## Demo
 
 **Upload an image, ask a question, get an AI-powered answer:**
 
