@@ -18,7 +18,7 @@ This project showcases **full-stack AI engineering skills**:
 | :--- | :--- |
 | **AI/ML Integration** | LangChain orchestration, Google Gemini Vision API, multimodal prompt engineering |
 | **Backend Development** | Flask REST API, base64 image processing, async request handling |
-| **DevOps & Cloud** | Docker containerization, GitHub Actions CI/CD, Render deployment |
+| **MLOPS** | Docker containerization, GitHub Actions CI/CD, Render deployment |
 | **Software Engineering** | Modular architecture, unit testing with mocks, type-safe Python 3.11+ |
 | **Developer Tooling** | UV package manager, Makefile automation, ruff linting, pytest |
 
